@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernStore.Domain", "ModernStore.Domain\ModernStore.Domain.csproj", "{320595BD-8E54-454E-9508-EDB9CE15D262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernStore.Console", "ModernStore.Console\ModernStore.Console.csproj", "{7C914183-0B1A-4A63-9339-943A0E712802}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{320595BD-8E54-454E-9508-EDB9CE15D262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320595BD-8E54-454E-9508-EDB9CE15D262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320595BD-8E54-454E-9508-EDB9CE15D262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320595BD-8E54-454E-9508-EDB9CE15D262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C914183-0B1A-4A63-9339-943A0E712802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C914183-0B1A-4A63-9339-943A0E712802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C914183-0B1A-4A63-9339-943A0E712802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C914183-0B1A-4A63-9339-943A0E712802}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
