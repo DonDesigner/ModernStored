@@ -14,8 +14,16 @@ namespace ModernStore.conso
         {
             var user = new User("diego", "diego123");
 
-            var customer = new Customer("Diego", "Fernandes", "diego@mail.com", user);
+            var customer = new Customer("ab", "cd", "diego@mail.com", user);
   
+            if(!customer.isValid())
+            {
+                foreach(var notification in customer.Notifications)
+                {
+                    Console.WriteLine(notification.Message);
+                }
+            }
+
 
             Console.WriteLine($"{customer.FirstName} {customer.LastName} :/ Ativo:{customer.User.Active.ToString()} ");
             Console.ReadKey();
