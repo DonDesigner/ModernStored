@@ -4,17 +4,17 @@ namespace ModernStore.Domain.Entities
 {
     public class User
     {
-        public User(string username, string email)
+        public User(string username, string password)
         {
             Id = Guid.NewGuid();
             Username = username;
-            Email = email;
+            Password = password;
             Active = false;
         }
 
         public Guid Id { get; private set; }
         public string Username { get; private set; }
-        public string Email { get; set; }
+        public string Password { get; set; }
         public bool Active { get; private set; }
 
 
