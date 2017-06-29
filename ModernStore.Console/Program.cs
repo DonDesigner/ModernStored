@@ -1,4 +1,5 @@
 ﻿using ModernStore.Domain.Entities;
+using ModernStore.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,11 @@ namespace ModernStore.conso
     {
         static void Main(string[] args)
         {
+            var name = new Name("Diego", "Fernandes");
             var user = new User("Dieog", "123");
-            var customer = new Customer("Diego", "Fernandes", "diego@mail.com", user);
+            var cpf = new Document("12345678911");
+            var email = new Email("diego@mail.com");
+            var customer = new Customer(name, email, cpf , user);
 
             var mouse = new Product("Mouse", 299, "mouse.jpg", 20);
             var mousePad = new Product("Mouse Pad", 99, "mousepad.jpg", 20);
@@ -40,12 +44,19 @@ namespace ModernStore.conso
             Console.WriteLine($"Taxa de Entrega: { order.DeliveryFee}");
             Console.WriteLine($"Sub Total: {order.SubTotal()}");
             Console.WriteLine($"Total: {order.Total()}");
-            Console.WriteLine($"Cliente: {order.Customer.ToString()}");
-            Console.WriteLine("-------------------------------------");
+            Console.WriteLine($"Cliente: {order.Customer.Name}");
+          
             Console.WriteLine("-Estoque-----------------------------");
             Console.WriteLine($"Mouses {mouse.QuantityOnHand}");
             Console.WriteLine($"MousePads {mousePad.QuantityOnHand}");
             Console.WriteLine($"Teclados {teclado.QuantityOnHand}");
+            Console.WriteLine("-------------------------------------");
+
+            if(customer.Notifications.Count != 0)
+            {
+                Console.WriteLine($"{customer.Notifications}");
+            }
+
 
             Console.ReadKey();
            

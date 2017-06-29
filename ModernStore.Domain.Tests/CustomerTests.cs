@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ModernStore.Domain.Entities;
+using ModernStore.Domain.ValueObjects;
 
 namespace ModernStore.Domain.Tests
 {
@@ -16,12 +17,15 @@ namespace ModernStore.Domain.Tests
 
 
         private User user = new User("diego", "123");
+        private Name name = new Name("Diego", "Fernandes");
+        private Email email = new Email("diego@mail.com");
+        private Document CPF = new Document("12345678999");
 
         [TestMethod]
         [TestCategory("Customer - New Customer")]
         public void GivenAnInvalidFirstNameShouldReturnNotification()
         {          
-            var customer = new Customer("","Fernandes", "diego@mail.com", user);
+            var customer = new Customer(name, email, CPF, user);
             Assert.IsFalse(customer.isValid());        
         }
 
@@ -29,7 +33,7 @@ namespace ModernStore.Domain.Tests
         [TestCategory("Customer - New Customer")]
         public void GivenAnInvalidLastNameShouldReturnNotification()
         {
-            var customer = new Customer("diego", "", "diego@mail.com", user);
+            var customer = new Customer(name, email, CPF, user);
             Assert.IsFalse(customer.isValid());
         }
 
@@ -37,7 +41,7 @@ namespace ModernStore.Domain.Tests
         [TestCategory("Customer - New Customer")]
         public void GivenAnInvalidEmailShouldReturnNotification()
         {
-            var customer = new Customer("diego", "Fernandes", "a", user);
+            var customer = new Customer(name, email, CPF, user);
             Assert.IsFalse(customer.isValid());
         }
     }

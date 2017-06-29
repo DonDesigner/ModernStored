@@ -46,6 +46,9 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\EOrderStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValueObjects\Document.cs" />
+    <Compile Include="ValueObjects\Email.cs" />
+    <Compile Include="ValueObjects\Name.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
