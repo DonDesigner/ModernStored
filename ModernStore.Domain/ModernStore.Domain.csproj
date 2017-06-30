@@ -39,9 +39,11 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\CustomerCommandHandler.cs" />
     <Compile Include="CommandHandlers\OrderCommandHandler.cs" />
     <Compile Include="Command\RegisterOrderCommand.cs" />
     <Compile Include="Command\RegisterOrderItemCommand.cs" />
+    <Compile Include="Command\UpdateCustomerCommand.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
