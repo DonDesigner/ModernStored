@@ -96,6 +96,16 @@ namespace ModernStore.conso
             new User("felipe", "543")
                 );
         }
+
+        public void Save(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class FakeProductRepository : IProductRepository

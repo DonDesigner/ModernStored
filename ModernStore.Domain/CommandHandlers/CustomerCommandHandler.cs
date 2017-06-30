@@ -1,6 +1,7 @@
 ﻿using FluentValidator;
 using ModernStore.Domain.Command;
 using ModernStore.Domain.Repositories;
+using ModernStore.Domain.ValueObjects;
 using ModernStore.Shared.Commands;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,17 @@ namespace ModernStore.Domain.CommandHandlers
             }
 
             // Passo 3. Atualizar a entidade
-            var name = new namespace(command.FirstName, command.LastName);
+            var name = new Name(command.FirstName, command.LastName);
             customer.Update(name, command.BirthDate);
 
+            //Passo 4. Adicionar as notificações
+            AddNotifications(customer.Notifications);
+
+            //Pass0 5. Persistir no banco
+            if (customer.isValid())
+                _customerRepository.Update(customer);
+
         }
+
     }
 }

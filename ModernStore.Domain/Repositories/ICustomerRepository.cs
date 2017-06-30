@@ -9,7 +9,10 @@ namespace ModernStore.Domain.Repositories
 
         Customer GetByUserId(Guid id);
 
+        void Save(Customer customer);
 
+        void Update(Customer customer);
 
+        
     }
 }
