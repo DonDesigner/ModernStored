@@ -1,4 +1,6 @@
-﻿using ModernStore.Domain.Entities;
+﻿using ModernStore.Domain.Command;
+using ModernStore.Domain.CommandHandlers;
+using ModernStore.Domain.Entities;
 using ModernStore.Domain.Repositories;
 using ModernStore.Domain.ValueObjects;
 using System;
@@ -14,37 +16,49 @@ namespace ModernStore.conso
     {
         static void Main(string[] args)
         {
-            GenerateOrder(new FakeCustomerRepository(), new FakeProductRepository(), new Guid(), new Dictionary<Guid, int> { { Guid.NewGuid(), 5 } }, 10,20 );
+            var command = new RegisterOrderCommand
+            {
+                Customer = Guid.NewGuid(),
+                DeliveryFee = 9,
+                Discount = 30,
+                Items = new List<RegisterOrderItemCommand>
+                    {
+                        new RegisterOrderItemCommand
+                        {
+                           Product = Guid.NewGuid(),
+                           Quantity = 3
+                        }
+                    }
+            };
+
+
+            GenerateOrder(
+                new FakeCustomerRepository(), 
+                new FakeProductRepository(), 
+                new FakeOrderRepository(),
+                command);
             Console.ReadKey();
 
         }
 
+
+
         public static void GenerateOrder(
             ICustomerRepository customerRepository,
             IProductRepository productRepository,
-            Guid userId,
-            IDictionary<Guid, int> products,  //key o produto - value a quantidade
-            decimal deliveryFee,
-            decimal discount
+            IOrderRepository orderRepository,
+            RegisterOrderCommand command
             )
         {
-            var customer = customerRepository.GetByUserId(userId);
 
-            var order = new Order(customer, deliveryFee, discount);
-            foreach (var item in products)
-            {
-                var prod = productRepository.Get(item.Key);
-                order.AddItem(new OrderItem(prod, item.Value));
-            }
-               
-          
+            var handler = new OrderCommandHandler(customerRepository, productRepository, orderRepository);
 
-            order.AddItem(new OrderItem(mouse, 2));
-            order.AddItem(new OrderItem(mousePad, 2));
-            order.AddItem(new OrderItem(teclado, 2));
+            handler.Handle(command);
 
+            if (handler.IsValid())
+                Console.WriteLine("Pedido cadastrado com sucesso!");
 
-
+            /*
             Console.WriteLine($"Número do Pedido: {order.Number}");
             Console.WriteLine($"Data: { order.CreateDate:dd/MM/yyyy}");
             Console.WriteLine($"Desconto: { order.Discount}");
@@ -53,17 +67,13 @@ namespace ModernStore.conso
             Console.WriteLine($"Total: {order.Total()}");
             Console.WriteLine($"Cliente: {order.Customer.Name}");
 
+            
             Console.WriteLine("-Estoque-----------------------------");
             Console.WriteLine($"Mouses {mouse.QuantityOnHand}");
             Console.WriteLine($"MousePads {mousePad.QuantityOnHand}");
             Console.WriteLine($"Teclados {teclado.QuantityOnHand}");
             Console.WriteLine("-------------------------------------");
-
-            if (customer.Notifications.Count != 0)
-            {
-                Console.WriteLine($"{customer.Notifications}");
-            }
-
+            */
 
 
         }
@@ -72,20 +82,20 @@ namespace ModernStore.conso
 
     public class FakeCustomerRepository : ICustomerRepository
     {
-        public Customer get(Guid id)
+        public Customer Get(Guid id)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public Customer GetByUserId(Guid id)
         {
             return new Customer(
-            new Name("Diego", "Fernandes"),
-            new Email("diego@mail.com"),
-            new Document("12345678999"),
-            new User("diego", "123")
+            new Name("Felipe", "Dinis"),
+            new Email("lfdf@mail.com"),
+            new Document("00987654322"),
+            new User("felipe", "543")
                 );
-        }           
+        }
     }
 
     public class FakeProductRepository : IProductRepository
@@ -98,6 +108,14 @@ namespace ModernStore.conso
         public Product Get(Guid id)
         {
             return new Product("Mouse", 299, "", 50);
+        }
+    }
+
+    public class FakeOrderRepository : IOrderRepository
+    {
+        public void Save(Order order)
+        {
+           
         }
     }
 }

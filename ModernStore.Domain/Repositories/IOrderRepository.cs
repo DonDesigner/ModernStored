@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ModernStore.Domain.Repositories
 {
-    public interface IProductRepository
+    public interface IOrderRepository
     {
-        Product Get(Guid id);
+        void Save(Order order);
     }
 }
