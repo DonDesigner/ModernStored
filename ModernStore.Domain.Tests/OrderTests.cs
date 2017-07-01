@@ -8,7 +8,7 @@ namespace ModernStore.Domain.Tests
     [TestClass]
     public class OrderTests
     {
-        private User user = new User("diego", "123");
+        private User user = new User("diego", "123", "123");
         private Name name = new Name("Diego", "Fernandes");
         private Email email = new Email("diego@mail.com");
         private Document CPF = new Document("12345678999");
@@ -28,7 +28,7 @@ namespace ModernStore.Domain.Tests
         [TestCategory("Order - New Order")]
         public void GivenAnOutOfStockProductShouldReturnAnError()
         {
-            var user = new User("Diego", "123");
+            var user = new User("Diego", "123", "123");
             var mouse = new Product("Mouse", 299, "mouse.jpg", 0);
 
             var order = new Order(_customer, 8, 10);

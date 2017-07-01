@@ -1,15 +1,12 @@
 ﻿using FluentValidator;
-using ModernStore.Domain.Command;
+using ModernStore.Domain.Commands.Inputs;
+using ModernStore.Domain.Commands.Results;
 using ModernStore.Domain.Entities;
 using ModernStore.Domain.Repositories;
 using ModernStore.Shared.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ModernStore.Domain.CommandHandlers
+namespace ModernStore.Domain.Commands.Handlers
 {
     public class OrderCommandHandler : Notifiable, ICommandHandler<RegisterOrderCommand>
     {
@@ -24,7 +21,7 @@ namespace ModernStore.Domain.CommandHandlers
             _productRepository = productRepository;
         }
 
-        public void Handle(RegisterOrderCommand command)
+        public ICommandResult Handle(RegisterOrderCommand command)
         {
 
             // Instância o cliente do lendo do repositorio
@@ -47,9 +44,19 @@ namespace ModernStore.Domain.CommandHandlers
 
 
             //Persiste no Banco
-            if (order.IsValid())
+            if (IsValid())
                 _orderRepository.Save(order);
 
+            return new RegisterOrderCommandResult
+            {
+                Number = order.Number
+            };
+
+        }
+
+        ICommandResult ICommandHandler<RegisterOrderCommand>.Handle(RegisterOrderCommand command)
+        {
+            throw new NotImplementedException();
         }
     }
 }

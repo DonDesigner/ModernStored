@@ -16,7 +16,7 @@ namespace ModernStore.Domain.Tests
         //onde o teste retorna TRUE mas o teste está falso
 
 
-        private User user = new User("diego", "123");
+        private User user = new User("diego", "123", "123");
         private Name name = new Name("Diego", "Fernandes");
         private Email email = new Email("diego@mail.com");
         private Document CPF = new Document("12345678999");

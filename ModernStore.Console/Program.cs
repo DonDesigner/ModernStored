@@ -82,6 +82,16 @@ namespace ModernStore.conso
 
     public class FakeCustomerRepository : ICustomerRepository
     {
+        public bool DocumentExists(string document)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Customer Get(string document)
+        {
+            throw new NotImplementedException();
+        }
+
         public Customer Get(Guid id)
         {
             throw new NotImplementedException();
@@ -93,7 +103,7 @@ namespace ModernStore.conso
             new Name("Felipe", "Dinis"),
             new Email("lfdf@mail.com"),
             new Document("00987654322"),
-            new User("felipe", "543")
+            new User("felipe", "543", "543")
                 );
         }
 

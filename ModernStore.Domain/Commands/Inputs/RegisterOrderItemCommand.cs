@@ -1,7 +1,7 @@
 ﻿using ModernStore.Shared.Commands;
 using System;
 
-namespace ModernStore.Domain.Command
+namespace ModernStore.Domain.Commands.Inputs
 {
     public class RegisterOrderItemCommand : ICommand
     {
