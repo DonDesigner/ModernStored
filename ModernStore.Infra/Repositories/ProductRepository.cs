@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModernStore.Domain.Entities;
+using ModernStore.Domain.Commands.Results;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace ModernStore.Infra.Repositories
 {
@@ -16,6 +19,16 @@ namespace ModernStore.Infra.Repositories
         public ProductRepository(ModernStoreDataContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<GetProductListCommandResult> Get()
+        {
+            using (var conn = new SqlConnection(@"Data Source=DON\SQLEXPRESS;Initial Catalog=ModernStored;User ID=sa;Password=admin"))
+            {
+                conn.Open();
+                return conn.Query<GetProductListCommandResult>("SELECT [id], [title], [price], [image] from Product");
+                
+            }
         }
 
         public Product Get(Guid id)

@@ -53,10 +53,10 @@ namespace ModernStore.Infra.Repositories
              * Exemplo utilizando o Dapper
              */
 
-            using (var conn = new SqlConnection(@""))
+            using (var conn = new SqlConnection(@"Data Source=DON\SQLEXPRESS;Initial Catalog=ModernStored;User ID=sa;Password=admin"))
             {
                 conn.Open();
-                return conn.Query<GetCustomerCommandResult>("").FirstOrDefault();
+                return conn.Query<GetCustomerCommandResult>("SELECT * FROM [GetCustomerInfoView] WHERE [Active]=1 AND [Username]=@username", new { username=username}).FirstOrDefault();
 
 
 
