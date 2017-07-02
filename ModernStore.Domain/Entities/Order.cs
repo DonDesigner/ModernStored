@@ -8,6 +8,8 @@ namespace ModernStore.Domain.Entities
 {
     public class Order : Entity
     {
+        protected Order() { }
+
         private readonly IList<OrderItem> _Items;
 
         public Order(Customer customer, decimal deliveryFee, decimal discount)
@@ -30,7 +32,7 @@ namespace ModernStore.Domain.Entities
         public DateTime CreateDate { get; private set; }
         public string Number { get; private set; }
         public EOrderStatus Status { get; private set; }
-        public IReadOnlyCollection<OrderItem> Items => _Items.ToArray();
+        public ICollection<OrderItem> Items => _Items.ToArray();
 
         public decimal DeliveryFee { get; private set; }  //Taxa de Entrega
         public decimal Discount { get; private set; } //Desconto

@@ -9,13 +9,14 @@ namespace ModernStore.Domain.ValueObjects
 {
     public class Document: Notifiable
     {
+        protected Document() { }
 
-        public string _number { get; private set; }
+        public string Number { get; private set; }
 
         public Document(string number)
         {
-            _number = number;
-            if (!Validate(_number))
+            Number = number;
+            if (!Validate(Number))
                 AddNotification("Documento", "CPF Inválido");
         }        
 
