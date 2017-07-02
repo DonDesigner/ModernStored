@@ -61,9 +61,9 @@ namespace ModernStore.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h1&gt;Bem vindo, &lt;strong&gt;{1}&lt;/strong&gt;&lt;/h1&gt;
+        ///   Looks up a localized string similar to &lt;h1&gt;Bem vindo, &lt;strong&gt;{0}&lt;/strong&gt;&lt;/h1&gt;
         ///&lt;h3&gt;Novo Modern App Stored&lt;/h3&gt;
-        ///&lt;h4&gt;Aqui o sr(a) &lt;strong&gt;{1}&lt;strong&gt; encontrará mais... &lt;/h4&gt;.
+        ///&lt;h4&gt;Aqui o sr(a) &lt;strong&gt;{0}&lt;strong&gt; encontrará mais... &lt;/h4&gt;.
         /// </summary>
         public static string WelcomeEmailBody {
             get {
@@ -72,7 +72,7 @@ namespace ModernStore.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bem vindo, {1}.
+        ///   Looks up a localized string similar to Bem vindo, {0}.
         /// </summary>
         public static string WelcomeEmailTitle {
             get {

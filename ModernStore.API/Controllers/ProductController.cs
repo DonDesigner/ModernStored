@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ModernStore.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +11,20 @@ namespace ModernStore.API.Controllers
     public class ProductController : Controller
     {
 
+        public readonly IProductRepository _repository;
+
+        public ProductController(IProductRepository repository)
+        {
+            _repository = repository;
+        }
+
         [HttpGet]
         [Route("v1/products")]
-        public string Get()
+        public IActionResult Get()
         {
-            return $"Listando todos os produtos";
+            return Ok(_repository.Get());
         }
 
-
-        [HttpGet]
-        [Route("v1/products/{id}")]
-        public string Get(Guid id)
-        {
-            return $"Produto {id}!";
-        }
-
-        [HttpPost]
-        [Route("v1/products")]
-        public string Post()
-        {
-            return "Método Post";
-        }
 
     }
 }

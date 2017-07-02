@@ -1,0 +1,11 @@
+** 16 API Basics
+	Obs.: Instalar o package - FluenteFalidator
+
+32:00 - Injetor de dependencia do ASP.Net Core 
+	AddScoped / AddTransient
+40:52 - Explica sobre FromBody 
+48:05 - Mostra o erro quando tem falta de Injeção de Dependência
+54:41 - Usa o _uow.Commit() para persistir no banco
+56:00 - Criando um "Padrão" Basic para salvar corretamente e padronizar as mensagens
+	Inicio das TASK / async - Desafogando o processado - não trabalha com lotes de threads (pesquisar)1
+1:00:01-Comenta sobre onde colocar o log - sugere o Elmah	
