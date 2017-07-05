@@ -8,4 +8,31 @@
 54:41 - Usa o _uow.Commit() para persistir no banco
 56:00 - Criando um "Padrão" Basic para salvar corretamente e padronizar as mensagens
 	Inicio das TASK / async - Desafogando o processado - não trabalha com lotes de threads (pesquisar)1
-1:00:01-Comenta sobre onde colocar o log - sugere o Elmah	
+1:00:01-Comenta sobre onde colocar o log - sugere o Elmah
+1:06:00-Os métodos Async que chamarem outros async tmb deve ser async	
+
+** 17 Segurança API
+
+	Explicando OAuth / JWT 
+	Autenticação - Quem é você!
+	Autorização - O que você pode fazer! - 
+		+ em Autorização há 2 caminhos
+			- Roles (Regras) - Modo mais simples
+			- Polices (Politicas) -  Clains/Clãns - Mais rico em recursos
+
+26:20 - as constantes ISSUER/AUDIENCE/SECRET_KEY
+29:00 - Iniciar as Polices adicionando no services.AddMvc
+		** neste caso a regra é fechar TODAS as portas e depois ir liberando-as conforme solicitado.
+31:12 - Adicionar o decorator [AllowAnonymous] / Permitir Anonimos
+32:10 - Criar Policy
+		+ Policy cumolativa - um usuario ter mais de uma Policy
+36:00 - services.Configure<>
+
+Obs.: a sequência no StartUp.cd é extremamente importante
+39:40 - Dica no JwtBeareOption - AutomaticAuthenticate=True / AutomaticChanlleng=true
+		Beare authentication
+		40:27 - explica um problema
+
+
+
+
