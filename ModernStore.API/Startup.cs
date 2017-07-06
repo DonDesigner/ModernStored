@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -13,6 +14,7 @@ using ModernStore.Infra.Contexts;
 using ModernStore.Infra.Repositories;
 using ModernStore.Infra.Services;
 using ModernStore.Infra.Transaction;
+using ModernStore.Shared;
 using System;
 using System.Text;
 
@@ -20,6 +22,7 @@ namespace ModernStore.API
 {
     public class Startup
     {
+        public IConfiguration Configurarion { get; set; }
 
         private const string ISSUER = "c1f51f42"; //Quem pede
         private const string AUDIENCE = "c6bbbb645024";
@@ -27,6 +30,20 @@ namespace ModernStore.API
 
         //Assinatura da chave / Chave simetrica
         private readonly SymmetricSecurityKey  _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SECRET_KEY));
+
+        public Startup(IHostingEnvironment env)
+        {
+            var confifurationBuilder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            Configurarion = confifurationBuilder.Build();
+
+            //Para deixar a connectionsString global cria-se em Shared uma classe
+            // com o nome "runtime" com a propriedade "ConnectionString"
+            //Configurarion.GetConnectionString("CnnStr");
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -110,6 +127,8 @@ namespace ModernStore.API
                 x.AllowAnyOrigin();
             });
             app.UseMvc();
+
+            Runtime.ConnectionString = Configurarion.GetConnectionString("CnnStr");
 
         }
     }

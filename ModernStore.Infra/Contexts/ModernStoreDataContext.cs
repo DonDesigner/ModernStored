@@ -1,5 +1,6 @@
 ﻿using ModernStore.Domain.Entities;
 using ModernStore.Infra.Mappings;
+using ModernStore.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +12,7 @@ namespace ModernStore.Infra.Contexts
 {
     public class ModernStoreDataContext : DbContext
     {
-        public ModernStoreDataContext() : base(@"Data Source=DON\SQLEXPRESS;Initial Catalog=ModernStored;User ID=sa;Password=admin")
+        public ModernStoreDataContext() : base(Runtime.ConnectionString)
         {
             Configuration.LazyLoadingEnabled = false; //
             Configuration.ProxyCreationEnabled = false;      

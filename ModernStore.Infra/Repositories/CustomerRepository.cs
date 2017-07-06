@@ -10,6 +10,7 @@ using ModernStore.Infra.Contexts;
 using ModernStore.Domain.Commands.Results;
 using System.Data.SqlClient;
 using Dapper;
+using ModernStore.Shared;
 
 namespace ModernStore.Infra.Repositories
 {
@@ -53,7 +54,7 @@ namespace ModernStore.Infra.Repositories
              * Exemplo utilizando o Dapper
              */
 
-            using (var conn = new SqlConnection(@"Data Source=DON\SQLEXPRESS;Initial Catalog=ModernStored;User ID=sa;Password=admin"))
+            using (var conn = new SqlConnection(Runtime.ConnectionString))
             {
                 conn.Open();
                 return conn.Query<GetCustomerCommandResult>("SELECT * FROM [GetCustomerInfoView] WHERE [Active]=1 AND [Username]=@username", new { username=username}).FirstOrDefault();

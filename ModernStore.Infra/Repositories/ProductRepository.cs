@@ -9,6 +9,7 @@ using ModernStore.Domain.Entities;
 using ModernStore.Domain.Commands.Results;
 using System.Data.SqlClient;
 using Dapper;
+using ModernStore.Shared;
 
 namespace ModernStore.Infra.Repositories
 {
@@ -23,7 +24,7 @@ namespace ModernStore.Infra.Repositories
 
         public IEnumerable<GetProductListCommandResult> Get()
         {
-            using (var conn = new SqlConnection(@"Data Source=DON\SQLEXPRESS;Initial Catalog=ModernStored;User ID=sa;Password=admin"))
+            using (var conn = new SqlConnection(Runtime.ConnectionString))
             {
                 conn.Open();
                 return conn.Query<GetProductListCommandResult>("SELECT [id], [title], [price], [image] from Product");
