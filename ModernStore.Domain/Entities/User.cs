@@ -22,10 +22,22 @@ namespace ModernStore.Domain.Entities
 
         }
 
-       // public Guid Id { get; private set; }
+        // public Guid Id { get; private set; }
         public string Username { get; private set; }
         public string Password { get; set; }
         public bool Active { get; private set; }
+
+
+        public bool Authenticate(string username, string password)
+        {
+            if (Username == username && Password == EncryptPassword(password))
+                return true;
+
+            AddNotification("User", "Usuário ou senha inválido");
+
+            return false;
+
+        }
 
 
         public void Activate() => Active = true;

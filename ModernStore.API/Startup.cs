@@ -21,7 +21,7 @@ namespace ModernStore.API
     public class Startup
     {
 
-        private const string ISSUER = "c1f51f42";
+        private const string ISSUER = "c1f51f42"; //Quem pede
         private const string AUDIENCE = "c6bbbb645024";
         private const string SECRET_KEY = "6f65ec21-4309-4cd3-871a-8dfc2a6bd727";
 

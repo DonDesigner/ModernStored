@@ -21,8 +21,7 @@ namespace ModernStore.API.Controllers
 
         [HttpGet]
         [Route("v1/products")]
-        [AllowAnonymous]
-        public IActionResult Get()
+          public IActionResult Get()
         {
             return Ok(_repository.Get());
         }

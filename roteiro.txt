@@ -32,6 +32,15 @@ Obs.: a sequência no StartUp.cd é extremamente importante
 39:40 - Dica no JwtBeareOption - AutomaticAuthenticate=True / AutomaticChanlleng=true
 		Beare authentication
 		40:27 - explica um problema
+1:01:02-Dica para uma lista de "Roles" com um Foreach antes de criar as claims
+1:02:50-Explica um BUG no JsonSerializerSettings
+1:04:55-FromForm e não FromBody
+1:11:40-Gerando um POST da authentication no PostMan
+		-Body / x-www-form-urlencoded  - pois vai codificado pelo HTML
+1:21:00-[Authorize(Policy = "Admin")]
+1:22:00-Buscar o nome do usuario pelo "Token" User.Identity.Name
+
+1:23:00-Resumo explicativo de como funciona a Autorização
 
 
 
