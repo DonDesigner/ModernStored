@@ -128,7 +128,7 @@ namespace ModernStore.API
             });
             app.UseMvc();
 
-            Runtime.ConnectionString = Configurarion.GetConnectionString("CnnStr");
+            Runtime.ConnectionString = Configurarion.GetConnectionString("CnnStrCloud");
 
         }
     }
