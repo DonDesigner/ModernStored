@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ModernStore.Domain.Commands.Handlers;
 using ModernStore.Domain.Commands.Inputs;
 using ModernStore.Infra.Transaction;
@@ -19,9 +20,11 @@ namespace ModernStore.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("v1/orders")]
         public async Task<IActionResult> Post([FromBody]RegisterOrderCommand command)
         {
+            var customer = User.Identity.Name;
             var result = _handler.Handle(command);
             return await Response(result, _handler.Notifications);
         }
